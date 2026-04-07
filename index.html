@@ -482,7 +482,10 @@
     function uniqueTimes(list) {
       const seen = new Set(), out = [];
       list.forEach(s => { if (!seen.has(s.time)) { seen.add(s.time); out.push(s.time); } });
-      return out.sort();
+      return out.sort(function(a, b) {
+        var toMins = function(t) { var p = t.split(":").map(Number); return p[0] * 60 + p[1]; };
+        return toMins(a) - toMins(b);
+      });
     }
 
     function renderFilters() {
